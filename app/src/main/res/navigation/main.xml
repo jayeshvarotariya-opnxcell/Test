@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/userFragment"
+    android:id="@+id/main">
+
+    <fragment
+        android:id="@+id/userFragment"
+        android:name="com.openxcell.ui.user.UserFragment"
+        tools:layout="@layout/layout_fragment"
+        android:label="UserFragment" >
+
+        <action
+            android:id="@+id/action_userFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="com.openxcell.ui.list.ListFragment"
+        tools:layout="@layout/list_fragment"
+        android:label="ListFragment" >
+
+        <action
+            android:id="@+id/action_listFragment_to_userFragment"
+            app:destination="@id/userFragment" />
+    </fragment>
+    
+</navigation>
