@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.callblocker.app.ui.auth.viewmodel.LoginViewModel" />
+            type="com.openxcell.ui.user.UserViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
