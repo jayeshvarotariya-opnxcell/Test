@@ -12,11 +12,13 @@ import com.openxcell.R
 import com.openxcell.databinding.LayoutFragmentBinding
 import com.openxcell.di.Injectable
 import com.openxcell.ui.base.BaseFragment
+import com.openxcell.ui.base.BaseViewModel
 import com.openxcell.utills.Logger
 import com.openxcell.utills.SharedPrefsManager
 import javax.inject.Inject
 
 class UserFragment : BaseFragment(), Injectable {
+
 
 
     @Inject lateinit var  viewModelFactory: ViewModelProvider.Factory
@@ -62,5 +64,7 @@ class UserFragment : BaseFragment(), Injectable {
     }
 
     val navigator by lazy { findNavController() }
+
+    override fun getBaseViewModel(): BaseViewModel= userViewModel
 
 }

@@ -2,7 +2,8 @@ package com.openxcell.di.builder.app
 
 import com.openxcell.data.api.URLFactory
 import com.openxcell.data.api.ApiInterface
-import com.openxcell.data.api.ErrorInterceptor
+import com.openxcell.data.api.HeaderAndErrorInterceptor
+import com.openxcell.utills.SharedPrefsManager
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -17,8 +18,8 @@ class NetModule {
 
     @Provides
     @Singleton
-    fun providesOkHttpClient(): OkHttpClient = OkHttpClient.Builder()
-        .addInterceptor(ErrorInterceptor())
+    fun providesOkHttpClient(sharedPrefsManager: SharedPrefsManager): OkHttpClient = OkHttpClient.Builder()
+        .addInterceptor(HeaderAndErrorInterceptor(sharedPrefsManager))
         .addInterceptor(provideHttpLoggingInterceptor())
         .build()
 

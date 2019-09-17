@@ -7,9 +7,12 @@ import android.view.ViewGroup
 import com.openxcell.databinding.ListFragmentBinding
 import com.openxcell.di.Injectable
 import com.openxcell.ui.base.BaseFragment
+import com.openxcell.ui.base.BaseViewModel
 
 class ListFragment : BaseFragment(), Injectable {
-
+    override fun getBaseViewModel(): BaseViewModel {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
 
     lateinit var mBinding: ListFragmentBinding

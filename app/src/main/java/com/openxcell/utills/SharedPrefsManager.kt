@@ -3,6 +3,8 @@ package com.openxcell.utills
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -59,5 +61,16 @@ class SharedPrefsManager @Inject constructor(private val appContext: Application
         editor.apply()
     }
 
+    fun <T> setObject(key: Int, value: T) {
+        val editor = prefs.edit()
+        editor.putString(appContext.getString(key), Gson().toJson(value))
+        editor.apply()
+    }
+
+    fun <T> getObject(key: Int) {
+        val type = object : TypeToken<T>() {
+        }.type
+        Gson().toJson(prefs.getString(appContext.getString(key), "") ?: "", type)
+    }
 
 }

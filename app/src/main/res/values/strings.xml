@@ -9,4 +9,22 @@
     <string name="blank_email">Please enter email</string>
     <string name="blank_password">Please enter password</string>
     <string name="valid_email">Please enter valid email</string>
+    <string name="pref_auth_token">pref_auth_token</string>
+    <string name="sign_up_here">Sign Up here.</string>
+    <string name="don_t_have_account">Don\'t have account ?</string>
+    <string name="signup">SignUp</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="blank_first_name">Please enter first name</string>
+    <string name="invalid_name">Name must contains only character</string>
+    <string name="blank_last_name">Please enter last name</string>
+    <string name="first_name_invalid">First name should contain at least 3 Characters</string>
+    <string name="last_name_invalid">Last name should contain at least 3 Characters</string>
+    <string name="password_invalid">Password should contain at least 3 Characters</string>
+    <string name="passowrd_mismatch">Password mismatch</string>
+    <string name="blank_confirm_password">Please enter confirm password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="login">Login</string>
+    <string name="home">Home</string>
+
 </resources>

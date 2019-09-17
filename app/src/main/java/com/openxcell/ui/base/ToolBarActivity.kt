@@ -1,6 +1,7 @@
 package com.openxcell.ui.base
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.appbar.AppBarLayout
@@ -29,6 +30,7 @@ abstract class ToolBarActivity :BaseActivity() {
         // configure for 1st time use
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNDEFINED)
         setSupportActionBar(toolBar)
+        appBar.visibility= View.GONE
 
     }
 

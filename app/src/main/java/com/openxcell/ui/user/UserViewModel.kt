@@ -12,6 +12,7 @@ import com.openxcell.data.pojo.UserModel
 import com.openxcell.data.repository.AuthRepository
 import com.openxcell.ui.base.BaseViewModel
 import com.openxcell.utills.Logger
+import com.openxcell.utills.SingleLiveEvent
 import com.openxcell.utills.SubscribeWithModel
 import java.util.regex.Pattern
 import javax.inject.Inject
@@ -24,7 +25,7 @@ class UserViewModel @Inject constructor(private val authRepository: AuthReposito
     val password = ObservableField<String>("123456")
     val emailError = ObservableField<String>("")
     val passwordError = ObservableField<String>("")
-    val navigation = MutableLiveData<String>()
+    val navigation = SingleLiveEvent<String>()
 
 
     fun submit(view:View) {
@@ -41,6 +42,7 @@ class UserViewModel @Inject constructor(private val authRepository: AuthReposito
     }
 
     private fun validated(): Boolean {
+        hideKeyBordObservable.postValue(true)
         emailError.set("")
         passwordError.set("")
         if (TextUtils.isEmpty(email.get())) {
