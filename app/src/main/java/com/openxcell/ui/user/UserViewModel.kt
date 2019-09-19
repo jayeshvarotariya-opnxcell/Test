@@ -12,6 +12,7 @@ import com.openxcell.data.pojo.UserModel
 import com.openxcell.data.repository.AuthRepository
 import com.openxcell.ui.base.BaseViewModel
 import com.openxcell.utills.Logger
+import com.openxcell.utills.NavigationCommand
 import com.openxcell.utills.SingleLiveEvent
 import com.openxcell.utills.SubscribeWithModel
 import java.util.regex.Pattern
@@ -25,7 +26,7 @@ class UserViewModel @Inject constructor(private val authRepository: AuthReposito
     val password = ObservableField<String>("123456")
     val emailError = ObservableField<String>("")
     val passwordError = ObservableField<String>("")
-    val navigation = SingleLiveEvent<String>()
+
 
 
     fun submit(view:View) {
@@ -35,7 +36,7 @@ class UserViewModel @Inject constructor(private val authRepository: AuthReposito
                     SubscribeWithModel<ResponseData<UserModel>, UserViewModel>(this) {
                     override fun onSuccess(t: ResponseData<UserModel>) {
                         Logger.log(">>>>"+t.data)
-                        navigation.postValue("")
+                        navigation.postValue(NavigationCommand.To(UserFragmentDirections.actionUserFragmentToListFragment()))
                     }
                 }
                 )

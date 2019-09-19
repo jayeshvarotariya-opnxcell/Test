@@ -4,15 +4,27 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.openxcell.databinding.ListFragmentBinding
 import com.openxcell.di.Injectable
 import com.openxcell.ui.base.BaseFragment
-import com.openxcell.ui.base.BaseViewModel
+import javax.inject.Inject
 
 class ListFragment : BaseFragment(), Injectable {
-    override fun getBaseViewModel(): BaseViewModel {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
+
+
+    @Inject
+    lateinit var  viewModelFactory: ViewModelProvider.Factory
+
+
+    private val listViewModel: ListViewModel by viewModels {
+        viewModelFactory
     }
+
+
+    override fun getBaseViewModel() = listViewModel
 
 
     lateinit var mBinding: ListFragmentBinding

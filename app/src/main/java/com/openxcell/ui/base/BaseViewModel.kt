@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.openxcell.R
 import com.openxcell.data.api.ServerException
 import com.openxcell.data.db.AppDataBase
+import com.openxcell.utills.NavigationCommand
 import com.openxcell.utills.SharedPrefsManager
 import com.openxcell.utills.SingleLiveEvent
 import io.reactivex.disposables.CompositeDisposable
@@ -32,6 +33,8 @@ open class BaseViewModel : ViewModel() {
     val progressObservable = ObservableField<Boolean>(false)
 
     val hideKeyBordObservable = SingleLiveEvent<Boolean>()
+
+    val navigation = SingleLiveEvent<NavigationCommand>()
 
 
     override fun onCleared() {

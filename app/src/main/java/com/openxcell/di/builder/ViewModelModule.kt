@@ -2,8 +2,7 @@ package com.openxcell.di.builder
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.openxcell.data.datasource.AuthDataSource
-import com.openxcell.data.repository.AuthRepository
+import com.openxcell.ui.list.ListViewModel
 import com.openxcell.viewmodel.ViewModelFactory
 import com.openxcell.ui.user.UserViewModel
 import dagger.Binds
@@ -18,6 +17,14 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(UserViewModel::class)
     abstract fun bindUserViewModel(userViewModel: UserViewModel): ViewModel
+
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ListViewModel::class)
+    abstract fun bindListViewModel(userViewModel: ListViewModel): ViewModel
+
+
 
     @Binds
     abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory

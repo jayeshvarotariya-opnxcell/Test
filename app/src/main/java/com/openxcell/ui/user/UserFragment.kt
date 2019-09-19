@@ -57,13 +57,10 @@ class UserFragment : BaseFragment(), Injectable {
                 println("This is list count $it" )
                 Logger.log("This is list count $it" )
             })
-        userViewModel.navigation.observe(this, Observer {
-            navigator.navigate(R.id.listFragment)
-        })
 
     }
 
-    val navigator by lazy { findNavController() }
+
 
     override fun getBaseViewModel(): BaseViewModel= userViewModel
 
