@@ -9,23 +9,19 @@ import com.openxcell.ui.user.UserFragment
 import com.openxcell.ui.base.ToolBarActivity
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasAndroidInjector
 
-import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
 
 
-class MainActivity : ToolBarActivity(), HasSupportFragmentInjector {
+class MainActivity : ToolBarActivity(), HasAndroidInjector {
 
     @Inject
-    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
+    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>
 
-    override fun supportFragmentInjector() = dispatchingAndroidInjector
+    override fun androidInjector() = dispatchingAndroidInjector
 
     override fun getMainLayout(): Int = R.layout.activity_main
-
-
-
-
 
 
 }

@@ -76,7 +76,7 @@ dependencies {
     implementation deps.lifecycle.java8
     implementation deps.retrofit.runtime
     implementation deps.retrofit.gson
-    implementation("com.squareup.okhttp3:logging-interceptor:4.1.1")
+    implementation(deps.okhttp_logging)
     implementation deps.retrofit.adapter_rxjava2
     implementation deps.glide.runtime
 
@@ -88,6 +88,8 @@ dependencies {
 
     implementation deps.rxjava2
     implementation deps.rx_android
+
+    implementation deps.swipe.smart_pull_to_refresh
 
 
     kapt deps.dagger.android_support_compiler

@@ -8,8 +8,8 @@ import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import com.openxcell.MyApplication
 import dagger.android.AndroidInjection
+import dagger.android.HasAndroidInjector
 import dagger.android.support.AndroidSupportInjection
-import dagger.android.support.HasSupportFragmentInjector
 
 object AppInjector {
 
@@ -47,7 +47,7 @@ object AppInjector {
 
     private fun handelActivity(activity: Activity?) {
 
-        if (activity is HasSupportFragmentInjector){
+        if (activity is HasAndroidInjector){
             AndroidInjection.inject(activity)
         }
 

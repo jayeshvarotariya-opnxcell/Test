@@ -5,7 +5,6 @@ import android.util.Patterns
 import android.view.View
 import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.openxcell.R
 import com.openxcell.data.pojo.ResponseData
 import com.openxcell.data.pojo.UserModel
@@ -13,7 +12,6 @@ import com.openxcell.data.repository.AuthRepository
 import com.openxcell.ui.base.BaseViewModel
 import com.openxcell.utills.Logger
 import com.openxcell.utills.NavigationCommand
-import com.openxcell.utills.SingleLiveEvent
 import com.openxcell.utills.SubscribeWithModel
 import java.util.regex.Pattern
 import javax.inject.Inject

@@ -18,13 +18,10 @@ abstract class ViewModelModule {
     @ViewModelKey(UserViewModel::class)
     abstract fun bindUserViewModel(userViewModel: UserViewModel): ViewModel
 
-
     @Binds
     @IntoMap
     @ViewModelKey(ListViewModel::class)
     abstract fun bindListViewModel(userViewModel: ListViewModel): ViewModel
-
-
 
     @Binds
     abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
