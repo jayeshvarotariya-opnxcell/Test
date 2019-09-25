@@ -2,7 +2,6 @@ package com.openxcell.ui.list
 
 
 import androidx.databinding.ObservableField
-import com.openxcell.data.pojo.DataEntity
 import com.openxcell.data.pojo.UserRepo
 import com.openxcell.data.repository.AuthRepository
 import com.openxcell.ui.base.BaseViewModel
@@ -16,8 +15,9 @@ class ListViewModel @Inject constructor(private val authRepository: AuthReposito
 
 
     val onSwipeError = ObservableField<Throwable>()
-
     val onSwipeSuccess = ObservableField<UserRepo>()
+    val errorMessage = ObservableField<String>()
+    val progress = ObservableField<Boolean>(true)
 
     var page = 1
 
@@ -36,14 +36,16 @@ class ListViewModel @Inject constructor(private val authRepository: AuthReposito
         authRepository.getUserListByPage(pageS)
             .subscribe(object : SubscribeWithModel<UserRepo, ListViewModel>(this) {
                 override fun onSuccess(t: UserRepo) {
+                    progress.set(false)
                     page++
                     onSwipeSuccess.set(t)
                 }
 
                 override fun onError(e: Throwable) {
                     super.onError(e)
-                    if (page != 1)
-                        onSwipeError.set(e)
+                    progress.set(false)
+                    errorMessage.set("")
+                    onSwipeError.set(e)
                 }
 
             })

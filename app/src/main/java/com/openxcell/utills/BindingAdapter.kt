@@ -82,8 +82,10 @@ fun setSwipeLayout(view: SmartRefreshLayout, viewModel: ListViewModel) {
 }
 
 @BindingAdapter("app:onSwipeError")
-fun setSwipeLayout(view: SmartRefreshLayout, e: Throwable) {
+fun setSwipeLayout(view: SmartRefreshLayout, e: Throwable?) {
 
+    view.finishLoadMore(false)
+    view.finishRefresh(false)
 
 }
 
