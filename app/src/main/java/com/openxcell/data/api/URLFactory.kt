@@ -14,6 +14,9 @@ class URLFactory {
         const val SIGN_IN_URL = "/api/user/login"
 
 
+        const val USER_PAGE = "https://reqres.in/api/users"
+
+
 
     }
 }

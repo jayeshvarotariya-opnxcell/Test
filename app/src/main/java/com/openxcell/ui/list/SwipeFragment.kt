@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import com.openxcell.databinding.ListFragmentBinding
+import com.openxcell.databinding.SuperSwipeFragmentBinding
 import com.openxcell.di.Injectable
 import com.openxcell.ui.base.BaseFragment
 import javax.inject.Inject
 
-class ListFragment : BaseFragment(), Injectable {
+class SwipeFragment : BaseFragment(), Injectable {
 
 
 
@@ -27,7 +27,7 @@ class ListFragment : BaseFragment(), Injectable {
     override fun getBaseViewModel() = listViewModel
 
 
-    lateinit var mBinding: ListFragmentBinding
+    lateinit var mBinding : SuperSwipeFragmentBinding
 
 
 
@@ -36,13 +36,14 @@ class ListFragment : BaseFragment(), Injectable {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        mBinding= ListFragmentBinding.inflate(inflater,container,false)
+        mBinding= SuperSwipeFragmentBinding.inflate(inflater,container,false)
         return mBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mBinding.viewModel =listViewModel
+        listViewModel.retrieveDataList()
     }
 
 
