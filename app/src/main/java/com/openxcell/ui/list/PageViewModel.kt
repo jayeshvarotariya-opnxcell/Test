@@ -5,11 +5,10 @@ import androidx.databinding.ObservableField
 import com.openxcell.data.pojo.UserRepo
 import com.openxcell.data.repository.AuthRepository
 import com.openxcell.ui.base.BaseViewModel
-import com.openxcell.utills.NavigationCommand
 import com.openxcell.utills.SubscribeWithModel
 import javax.inject.Inject
 
-class ListViewModel @Inject constructor(private val authRepository: AuthRepository) :
+class PageViewModel @Inject constructor(private val authRepository: AuthRepository) :
 
     BaseViewModel() {
 
@@ -22,18 +21,6 @@ class ListViewModel @Inject constructor(private val authRepository: AuthReposito
     var page = 1
 
 
-    fun onClickSuperSwipe() {
-
-        navigation.postValue(NavigationCommand.To(ListFragmentDirections.actionListFragmentToSwipeFragment()))
-
-    }
-
-
-    fun onClickPageList() {
-
-        navigation.postValue(NavigationCommand.To(ListFragmentDirections.actionListFragmentToPageFragment()))
-
-    }
 
     fun retrieveDataList() {
         getUserByData("" + page)
@@ -41,7 +28,7 @@ class ListViewModel @Inject constructor(private val authRepository: AuthReposito
 
     private fun getUserByData(pageS: String) {
         authRepository.getUserListByPage(pageS)
-            .subscribe(object : SubscribeWithModel<UserRepo, ListViewModel>(this) {
+            .subscribe(object : SubscribeWithModel<UserRepo, PageViewModel>(this) {
                 override fun onSuccess(t: UserRepo) {
                     progress.set(false)
                     page++

@@ -7,7 +7,6 @@ import com.openxcell.data.pojo.ResponseData
 import com.openxcell.utills.SharedPrefsManager
 import okhttp3.Interceptor
 import okhttp3.Response
-import java.lang.Exception
 
 
 class HeaderAndErrorInterceptor(private val sharedPrefsManager: SharedPrefsManager) : Interceptor {

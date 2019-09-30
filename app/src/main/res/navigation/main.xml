@@ -2,14 +2,14 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/userFragment"
-    android:id="@+id/main">
+    android:id="@+id/main"
+    app:startDestination="@id/userFragment">
 
     <fragment
         android:id="@+id/userFragment"
         android:name="com.openxcell.ui.user.UserFragment"
-        tools:layout="@layout/layout_fragment"
-        android:label="UserFragment" >
+        android:label="UserFragment"
+        tools:layout="@layout/layout_fragment">
 
         <action
             android:id="@+id/action_userFragment_to_listFragment"
@@ -19,8 +19,8 @@
     <fragment
         android:id="@+id/listFragment"
         android:name="com.openxcell.ui.list.ListFragment"
-        tools:layout="@layout/list_fragment"
-        android:label="ListFragment" >
+        android:label="ListFragment"
+        tools:layout="@layout/list_fragment">
 
         <action
             android:id="@+id/action_listFragment_to_userFragment"
@@ -28,13 +28,23 @@
         <action
             android:id="@+id/action_listFragment_to_swipeFragment"
             app:destination="@id/swipeFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_pageFragment"
+            app:destination="@id/pageFragment" />
     </fragment>
 
-    <fragment android:id="@+id/swipeFragment"
+    <fragment
+        android:id="@+id/swipeFragment"
         android:name="com.openxcell.ui.list.SwipeFragment"
-        tools:layout="@layout/super_swipe_fragment"
-        android:label="SwipeFragment">
+        android:label="SwipeFragment"
+        tools:layout="@layout/super_swipe_fragment">
 
     </fragment>
+
+    <fragment
+        android:id="@+id/pageFragment"
+        android:name="com.openxcell.ui.list.PageFragment"
+        android:label="PageFragment"
+        tools:layout="@layout/page_fragment" />
 
 </navigation>

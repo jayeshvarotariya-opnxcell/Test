@@ -94,6 +94,10 @@ fun setSwipeLayout(view: SmartRefreshLayout, data: UserRepo?) {
 
     view.finishRefresh()
     view.finishLoadMore()
+    if(data!=null&&data.data?.size==0){
+        view.finishLoadMoreWithNoMoreData()
+        view.setEnableLoadMore(false)
+    }
 }
 
 @BindingAdapter("app:onListLoaded")
@@ -103,7 +107,7 @@ fun setSwipeLayout(view: RecyclerView, data: UserRepo?) {
             (view.adapter as ListAdapter).mData.addAll(it)
             (view.adapter as ListAdapter).notifyDataSetChanged()
         } else {
-            val mDataList: MutableList<DataEntity> = ArrayList()
+            val mDataList : MutableList<DataEntity> = ArrayList()
             mDataList.addAll(it)
             view.adapter = ListAdapter(mDataList)
         }

@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.openxcell.ui.activity.MainActivity
 import com.openxcell.utills.NavigationCommand
 
 
@@ -28,6 +29,9 @@ abstract class BaseFragment : Fragment() {
 
             }
         })
+
+        Intent(activity,MainActivity::class.java)
+
     }
 
 
