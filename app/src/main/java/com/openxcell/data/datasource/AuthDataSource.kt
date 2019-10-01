@@ -9,10 +9,9 @@ import com.openxcell.data.pojo.ResponseData
 import com.openxcell.data.pojo.UserModel
 import com.openxcell.data.pojo.UserRepo
 import com.openxcell.data.repository.AuthRepository
-import com.openxcell.utills.SubscribeWithOutType
+import com.openxcell.rx.observer.SingleWithOutHandler
 import com.openxcell.utills.makeThreadSafe
 import io.reactivex.Single
-import io.reactivex.SingleEmitter
 import io.reactivex.SingleOnSubscribe
 import java.util.*
 import javax.inject.Inject
@@ -57,20 +56,17 @@ class AuthDataSource @Inject constructor(
         valuesMap["loginType"] = "normal"
         return apiInterface.userLogin(valuesMap).makeThreadSafe()
             .doOnSuccess {
-                insertCryptocurrency(it.data)
+                insertUser(it.data)
             }
     }
 
-    private fun insertCryptocurrency(user: UserModel?) {
-        Single.create(object : SingleOnSubscribe<Boolean> {
-            override fun subscribe(e: SingleEmitter<Boolean>) {
-                user?.let {
-                    userDao.insertUser(user)
-                }
-
+    private fun insertUser(user: UserModel?) {
+        Single.create(SingleOnSubscribe<Boolean> {
+            user?.let {
+                userDao.insertUser(user)
             }
         }).makeThreadSafe()
-            .subscribe(SubscribeWithOutType())
+            .subscribe(SingleWithOutHandler())
     }
 
 

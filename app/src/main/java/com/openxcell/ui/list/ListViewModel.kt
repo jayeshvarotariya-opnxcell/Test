@@ -6,7 +6,7 @@ import com.openxcell.data.pojo.UserRepo
 import com.openxcell.data.repository.AuthRepository
 import com.openxcell.ui.base.BaseViewModel
 import com.openxcell.utills.NavigationCommand
-import com.openxcell.utills.SubscribeWithModel
+import com.openxcell.rx.observer.SingleWithHandler
 import javax.inject.Inject
 
 class ListViewModel @Inject constructor(private val authRepository: AuthRepository) :
@@ -41,7 +41,7 @@ class ListViewModel @Inject constructor(private val authRepository: AuthReposito
 
     private fun getUserByData(pageS: String) {
         authRepository.getUserListByPage(pageS)
-            .subscribe(object : SubscribeWithModel<UserRepo, ListViewModel>(this) {
+            .subscribe(object : SingleWithHandler<UserRepo>(this) {
                 override fun onSuccess(t: UserRepo) {
                     progress.set(false)
                     page++

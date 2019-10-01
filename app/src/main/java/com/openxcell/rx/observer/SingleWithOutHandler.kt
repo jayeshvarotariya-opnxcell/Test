@@ -1,9 +1,10 @@
-package com.openxcell.utills
+package com.openxcell.rx.observer
 
+import com.openxcell.utills.Logger
 import io.reactivex.SingleObserver
 import io.reactivex.disposables.Disposable
 
-class SubscribeWithOutType<T> : SingleObserver<T> {
+class SingleWithOutHandler<T> : SingleObserver<T> {
 
 
     override fun onSuccess(t: T) {
@@ -11,11 +12,11 @@ class SubscribeWithOutType<T> : SingleObserver<T> {
     }
 
     override fun onSubscribe(d: Disposable) {
-
+        //No more in user
     }
 
     override fun onError(e: Throwable) {
-        Logger.log(">>>>>>>>>>>>>>>>>> onError"+e.message)
+        Logger.log(">>>>>>>>>>>>>>>>>> onError" + e.message)
     }
 
 }

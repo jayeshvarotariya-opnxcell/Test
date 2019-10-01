@@ -5,7 +5,7 @@ import androidx.databinding.ObservableField
 import com.openxcell.data.pojo.UserRepo
 import com.openxcell.data.repository.AuthRepository
 import com.openxcell.ui.base.BaseViewModel
-import com.openxcell.utills.SubscribeWithModel
+import com.openxcell.rx.observer.SingleWithHandler
 import javax.inject.Inject
 
 class PageViewModel @Inject constructor(private val authRepository: AuthRepository) :
@@ -28,7 +28,7 @@ class PageViewModel @Inject constructor(private val authRepository: AuthReposito
 
     private fun getUserByData(pageS: String) {
         authRepository.getUserListByPage(pageS)
-            .subscribe(object : SubscribeWithModel<UserRepo, PageViewModel>(this) {
+            .subscribe(object : SingleWithHandler<UserRepo>(this) {
                 override fun onSuccess(t: UserRepo) {
                     progress.set(false)
                     page++

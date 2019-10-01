@@ -9,10 +9,11 @@ import com.openxcell.R
 import com.openxcell.data.pojo.ResponseData
 import com.openxcell.data.pojo.UserModel
 import com.openxcell.data.repository.AuthRepository
+import com.openxcell.rx.MY_DATA
+import com.openxcell.rx.observer.SingleWithHandler
 import com.openxcell.ui.base.BaseViewModel
 import com.openxcell.utills.Logger
 import com.openxcell.utills.NavigationCommand
-import com.openxcell.utills.SubscribeWithModel
 import java.util.regex.Pattern
 import javax.inject.Inject
 
@@ -28,10 +29,11 @@ class UserViewModel @Inject constructor(private val authRepository: AuthReposito
 
 
     fun submit(view:View) {
+        rxBus.post( ""+123,MY_DATA)
         if (validated())
             authRepository.userLogin(email.get()!!, password.get()!!)
                 .subscribe(object :
-                    SubscribeWithModel<ResponseData<UserModel>, UserViewModel>(this) {
+                    SingleWithHandler<ResponseData<UserModel>>(this) {
                     override fun onSuccess(t: ResponseData<UserModel>) {
                         Logger.log(">>>>"+t.data)
                         navigation.postValue(NavigationCommand.To(UserFragmentDirections.actionUserFragmentToListFragment()))

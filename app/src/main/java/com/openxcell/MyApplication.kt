@@ -18,6 +18,7 @@ class MyApplication : Application(), HasAndroidInjector {
 
     override fun onCreate() {
         super.onCreate()
+
         AppInjector.init(this)
 
         SmartRefreshLayout.setDefaultRefreshHeaderCreator { context, layout -> ClassicsHeader(context) }
