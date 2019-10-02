@@ -13,3 +13,5 @@ fun <T> Single<T>.makeThreadSafe() = this.subscribeOn(Schedulers.io())
         if (it is ResponseData<*>&&it.status==0)
             throw ServerException(it.message)
     }
+
+fun String.zzzz() = this.substring(5,21)

@@ -3,23 +3,23 @@ package com.openxcell.data.db
 import android.text.TextUtils
 import androidx.room.TypeConverter
 import com.google.gson.Gson
-import com.openxcell.data.pojo.UserProfile
+import com.openxcell.data.pojo.PriceEntity
 
 object MyTypeConverters {
 
     @TypeConverter
     @JvmStatic
-    fun stringTOUserProfile(userProfileString: String): UserProfile {
+    fun stringTOUserProfile(userProfileString: String): PriceEntity {
         if (TextUtils.isEmpty(userProfileString))
-            return UserProfile()
+            return PriceEntity()
         else
-            return Gson().fromJson(userProfileString, UserProfile::class.java)
+            return Gson().fromJson(userProfileString, PriceEntity::class.java)
     }
 
 
     @TypeConverter
     @JvmStatic
-    fun userProfileToString(userProfile: UserProfile?): String {
+    fun userProfileToString(userProfile: PriceEntity?): String {
         return if (userProfile == null)
             ""
         else

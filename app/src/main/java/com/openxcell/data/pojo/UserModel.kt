@@ -2,53 +2,81 @@ package com.openxcell.data.pojo
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 @Entity
 data class UserModel(
-    @PrimaryKey
-    var userId: Int,
-    var firstName: String? = null,
-    var lastName: String? = null,
-    var name: String? = null,
-    var email: String? = null,
-    var phoneCountryCode: String? = null,
-    var referralCode: String? = null,
-    var phoneNumber: String,
-    var facebookId: String? = null,
+
+    @Expose
+    @SerializedName("subscribed")
+    var subscribed: Boolean = false,
+    @Expose
+    @SerializedName("remainingCount")
+    var remainingCount: Int = 0,
+    @Expose
+    @SerializedName("viewCount")
+    var viewCount: Int = 0,
+    @Expose
+    @SerializedName("adminVerification")
+    var adminVerification: String? = null,
+    @Expose
+    @SerializedName("billing")
+    var billing: String? = null,
+    @Expose
+    @SerializedName("subscriptionExpireDate")
+    var subscriptionExpireDate: String? = null,
+    @Expose
+    @SerializedName("amount")
+    var amount: Double = 0.toDouble(),
+    @Expose
+    @SerializedName("subscriptionActivationDate")
+    var subscriptionActivationDate: String? = null,
+    @Expose
+    @SerializedName("notificationStatus")
+    var notificationStatus: Boolean = false,
+    @Expose
+    @SerializedName("countryName")
+    var countryName: String? = null,
+    @Expose
+    @SerializedName("registered")
+    var registered: Boolean = false,
+    @Expose
+    @SerializedName("profileCompleted")
+    var profileCompleted: Boolean = false,
+    @Expose
+    @SerializedName("price")
+    var price: PriceEntity? = null,
+    @Expose
+    @SerializedName("emailVerified")
+    var emailVerified: String? = null,
+    @Expose
+    @SerializedName("mobileVerified")
+    var mobileVerified: String? = null,
+    @Expose
+    @SerializedName("mobile")
+    var mobile: String? = null,
+    @Expose
+    @SerializedName("mobileCode")
+    var mobileCode: String? = null,
+    @Expose
+    @SerializedName("profileImage")
+    var profileImage: String? = null,
+    @Expose
+    @SerializedName("accessToken")
     var accessToken: String? = null,
-    var profileImage: String = "",
-    var registered: Boolean,
-    var verified: Boolean,
-    var pUserId: Int=0,
-    var sUserId: Int=0,
-    var profileCreated: Boolean,
-    var notificationStatus: Boolean,
-    @SerializedName("userProfile")
-    var userProfile: UserProfile? = null
+    @Expose
+    @SerializedName("email")
+    var email: String? = null,
+    @Expose
+    @SerializedName("lastName")
+    var lastName: String? = null,
+    @Expose
+    @SerializedName("firstName")
+    var firstName: String? = null,
+    @PrimaryKey
+    @Expose
+    @SerializedName("id")
+    var id: Int = 0
 
-)
-
-data class UserProfile(
-    var id: String? = null,
-    var birthDate: String? = null,
-    var gender: String? = null,
-    var address: String? = null,
-    var town: String? = null,
-    var zipcode: String? = null,
-    var neighbourhood: String? = null,
-    var longitude: String? = null,
-    var latitude: String? = null,
-    var work: String? = null,
-    var grader: String? = null,
-    var children: String? = null,
-    var catchBuzz: String? = null,
-    var smoker: String? = null,
-    var smokerPot: String? = null,
-    var feed: String? = null,
-    var sign: String? = null,
-    var religion: String? = null,
-    var political: String? = null,
-    var pet: String? = null,
-    var height: String? = null
 )

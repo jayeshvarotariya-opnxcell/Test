@@ -19,14 +19,13 @@ abstract class BaseFragment : Fragment() {
         getBaseViewModel().navigation.observe(this, Observer {
             when (it) {
                 is NavigationCommand.To ->
-                    findNavController().navigate(it.directions)
+                    navigator.navigate(it.directions)
                 is NavigationCommand.ToActivity -> {
                     startActivity(Intent(activity, it.type))
                     activity?.finishAffinity()
                 }
                 is NavigationCommand.Back ->
                     activity?.onBackPressed()
-
             }
         })
 

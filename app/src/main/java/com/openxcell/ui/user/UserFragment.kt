@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.openxcell.R
+import com.openxcell.data.pojo.DataEntity
 import com.openxcell.databinding.LayoutFragmentBinding
 import com.openxcell.di.Injectable
 import com.openxcell.ui.base.BaseFragment
@@ -43,7 +45,6 @@ class UserFragment : BaseFragment(), Injectable {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         addLiveDataObserver()
-        sharedPrefsManager.setString("Hello","hello")
     }
 
 
