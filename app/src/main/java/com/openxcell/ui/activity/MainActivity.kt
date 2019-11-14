@@ -2,10 +2,12 @@ package com.openxcell.ui.activity
 
 import android.os.Bundle
 import android.widget.Toast
+import com.openxcell.BuildConfig
 import com.openxcell.rx.MY_DATA
 import com.openxcell.rx.RxBus
 import com.openxcell.rx.observer.ObserverWithHandler
 import com.openxcell.ui.base.ToolBarActivity
+import com.openxcell.utills.AESUtills
 import com.openxcell.utills.Logger
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
@@ -20,6 +22,9 @@ class MainActivity : ToolBarActivity(), HasAndroidInjector {
 
     @Inject
     lateinit var rxBus: RxBus
+
+    @Inject
+    lateinit var aesUtills: AESUtills
 
 
     override fun androidInjector() = dispatchingAndroidInjector
@@ -57,6 +62,7 @@ class MainActivity : ToolBarActivity(), HasAndroidInjector {
                     Logger.log(">>>>>>>  Any $t")
                 }
             })
+
 
     }
 

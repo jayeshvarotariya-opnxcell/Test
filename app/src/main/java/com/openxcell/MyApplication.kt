@@ -2,6 +2,7 @@ package com.openxcell
 
 
 import android.app.Application
+import android.content.Context
 import com.openxcell.di.AppInjector
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter
@@ -19,6 +20,8 @@ class MyApplication : Application(), HasAndroidInjector {
     override fun onCreate() {
         super.onCreate()
 
+        appContext =applicationContext
+
         AppInjector.init(this)
 
         SmartRefreshLayout.setDefaultRefreshHeaderCreator { context, layout -> ClassicsHeader(context) }
@@ -27,5 +30,11 @@ class MyApplication : Application(), HasAndroidInjector {
 
     override fun androidInjector() = dispatchingAndroidInjector
 
+
+
+    companion object {
+
+        lateinit var appContext: Context
+    }
 
 }

@@ -3,6 +3,7 @@ package com.openxcell.ui.base
 import android.app.Application
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
+import com.maan.mandir.utills.MessageCommand
 import com.openxcell.R
 import com.openxcell.data.api.ServerException
 import com.openxcell.data.db.AppDataBase
@@ -34,7 +35,7 @@ open class BaseViewModel : ViewModel(), RxHandler {
 
     val compositeDisposable = CompositeDisposable()
 
-    val errorLiveData = SingleLiveEvent<String>()
+    val messageLiveData = SingleLiveEvent<MessageCommand>()
 
     val progressObservable = ObservableField<Boolean>(false)
 
@@ -58,7 +59,7 @@ open class BaseViewModel : ViewModel(), RxHandler {
 
     override fun onError(e: Throwable) {
         when (e) {
-            is IOException -> errorLiveData.postValue(application.getString(R.string.no_internet))
+            is IOException -> messageLiveData.postValue(MessageCommand.NoInternet)
             is ServerException ->{
                if (e.type == ServerException.Companion.Type.AUTH)
                {
@@ -66,11 +67,12 @@ open class BaseViewModel : ViewModel(), RxHandler {
                    prefsManager.clearPrefs()
 
                }
-                else
-                   errorLiveData.postValue(e.message)
+                else e.message?.let {
+                   messageLiveData.postValue(MessageCommand.Error(it))
+               }
             }
 
-            else -> errorLiveData.postValue(application.getString(R.string.error_comman))
+            else -> messageLiveData.postValue(MessageCommand.SomethingWantWrong)
 
         }
     }

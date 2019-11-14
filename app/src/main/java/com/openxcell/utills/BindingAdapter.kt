@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
+import com.maan.mandir.utills.MessageCommand
 import com.openxcell.R
 import com.openxcell.data.pojo.DataEntity
 import com.openxcell.data.pojo.UserRepo
@@ -22,19 +23,61 @@ import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener
 
 
-@BindingAdapter("snackBar")
-fun setSnackBar(view: View, message: String?) {
 
-    message?.let {
-        val snackbar = Snackbar.make(view, "" + message, Snackbar.LENGTH_LONG)
-        // Get the Snackbar's layout view
-        val layout = snackbar.view as Snackbar.SnackbarLayout
-        layout.setBackgroundResource(R.color.red)
-        snackbar.show()
+@BindingAdapter("snackBar")
+fun setSnackBar(view: View, message: MessageCommand?) {
+
+
+    var messageStr = ""
+    var messageColor = 0
+
+    when (message) {
+
+        is MessageCommand.Info -> {
+            messageStr = message.message
+        }
+
+        is MessageCommand.Error -> {
+            messageStr = message.message
+            messageColor = R.color.red
+        }
+
+        is MessageCommand.Warn -> {
+            messageStr = message.message
+            messageColor = R.color.yallow
+        }
+
+        is MessageCommand.Success -> {
+            messageStr = message.message
+            messageColor = R.color.green
+        }
+
+        is MessageCommand.NoInternet -> {
+            messageStr = view.context.getString(R.string.no_internet)
+            messageColor = R.color.red
+        }
+
+        is MessageCommand.SomethingWantWrong -> {
+            messageStr = view.context.getString(R.string.error_comman)
+            messageColor = R.color.yallow
+        }
+
+        is MessageCommand.Non -> {
+            //Do nothing
+        }
     }
 
-}
 
+    val snackbar = Snackbar.make(view, messageStr, Snackbar.LENGTH_LONG)
+    // Get the Snackbar's layout view
+    val layout = snackbar.view as Snackbar.SnackbarLayout
+    if (messageColor != 0)
+        layout.setBackgroundResource(messageColor)
+    if (message !is MessageCommand.Non && message is MessageCommand)
+        snackbar.show()
+
+
+}
 
 @BindingAdapter("hideKeyBord")
 fun hideKeyBord(view: View, showHide: Boolean?) {

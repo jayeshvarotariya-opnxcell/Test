@@ -36,6 +36,7 @@ class AppModule {
 
 
     @Provides
+    @Singleton
     @Named("EncKey")
     fun provideEncKey(application: Application): String {
         val signatureList: List<String>

@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name='Dagger Application'
+rootProject.name='Base Application'

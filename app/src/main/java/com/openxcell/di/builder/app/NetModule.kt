@@ -1,8 +1,10 @@
 package com.openxcell.di.builder.app
 
+import com.openxcell.BuildConfig
 import com.openxcell.data.api.URLFactory
 import com.openxcell.data.api.ApiInterface
 import com.openxcell.data.api.HeaderAndErrorInterceptor
+import com.openxcell.utills.AESUtills
 import com.openxcell.utills.SharedPrefsManager
 import dagger.Module
 import dagger.Provides
@@ -18,10 +20,11 @@ class NetModule {
 
     @Provides
     @Singleton
-    fun providesOkHttpClient(sharedPrefsManager: SharedPrefsManager): OkHttpClient = OkHttpClient.Builder()
-        .addInterceptor(HeaderAndErrorInterceptor(sharedPrefsManager))
-        .addInterceptor(provideHttpLoggingInterceptor())
-        .build()
+    fun providesOkHttpClient(sharedPrefsManager: SharedPrefsManager): OkHttpClient =
+        OkHttpClient.Builder()
+            .addInterceptor(HeaderAndErrorInterceptor(sharedPrefsManager))
+            .addInterceptor(provideHttpLoggingInterceptor())
+            .build()
 
     private fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
         val ceptor = HttpLoggingInterceptor()
@@ -31,16 +34,17 @@ class NetModule {
 
     @Provides
     @Singleton
-    fun providesRetrofit(okHttpClient: OkHttpClient): Retrofit =
-        Retrofit.Builder().baseUrl(URLFactory.BASE_URL)
+    fun providesRetrofit(okHttpClient: OkHttpClient, aesUtills: AESUtills): Retrofit =
+        Retrofit.Builder().baseUrl(aesUtills.decryptString(BuildConfig.SERVER_URL))
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create()).build()
 
     @Provides
     @Singleton
-    fun provideApiInterface (retrofitClient: Retrofit) : ApiInterface = retrofitClient.create(
-        ApiInterface::class.java)
+    fun provideApiInterface(retrofitClient: Retrofit): ApiInterface = retrofitClient.create(
+        ApiInterface::class.java
+    )
 
 
 }

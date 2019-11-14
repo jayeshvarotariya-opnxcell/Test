@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:background="@drawable/login_bg"
         android:orientation="vertical"
-        app:snackBar="@{viewModel.errorLiveData}"
+        app:snackBar="@{viewModel.messageLiveData}"
         app:hideKeyBord="@{viewModel.hideKeyBordObservable}">
 
 
