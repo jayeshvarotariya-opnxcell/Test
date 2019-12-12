@@ -37,7 +37,7 @@ android {
     buildTypes {
         debug {
             testCoverageEnabled !project.hasProperty('android.injected.invoked.from.ide')
-            buildConfigField "String", "SERVER_URL", "\"C305F7EC7835D35284B84BE867641E21EBAAEF8B707A0B0B05DB439C7F706666F464F8273FBE38A9AD584EA8E964CEA5\""
+            buildConfigField "String", "SERVER_URL", "\"http://jenkins.openxcell.info:2503\""
         }
         release {
             minifyEnabled false

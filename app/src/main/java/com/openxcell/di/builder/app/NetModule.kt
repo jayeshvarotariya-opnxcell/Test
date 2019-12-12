@@ -35,7 +35,7 @@ class NetModule {
     @Provides
     @Singleton
     fun providesRetrofit(okHttpClient: OkHttpClient, aesUtills: AESUtills): Retrofit =
-        Retrofit.Builder().baseUrl(aesUtills.decryptString(BuildConfig.SERVER_URL))
+        Retrofit.Builder().baseUrl(BuildConfig.SERVER_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create()).build()

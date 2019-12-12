@@ -1,5 +1,6 @@
 package com.openxcell.utills
 
+import android.text.TextUtils
 import java.io.UnsupportedEncodingException
 import java.security.InvalidAlgorithmParameterException
 import java.security.InvalidKeyException
@@ -35,6 +36,8 @@ class AESUtills @Inject constructor(
     )
     @JvmOverloads
     fun encryptString(message: String, secret: SecretKey = generateKey()): String {
+
+        if(TextUtils.isEmpty(message)) return ""
         /* Encrypt the message. */
         var cipher: Cipher? = null
         cipher = Cipher.getInstance("AES/ECB/PKCS5Padding")
@@ -53,6 +56,7 @@ class AESUtills @Inject constructor(
         UnsupportedEncodingException::class
     )
     fun decryptString(cipherText: String, secret: SecretKey = generateKey()): String {
+        if(TextUtils.isEmpty(cipherText)) return ""
         /* Decrypt the message, given derived encContentValues and initialization vector. */
         var cipher: Cipher? = null
         cipher = Cipher.getInstance("AES/ECB/PKCS5Padding")
