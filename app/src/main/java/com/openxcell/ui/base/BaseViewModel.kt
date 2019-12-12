@@ -10,8 +10,12 @@ import com.openxcell.data.db.AppDataBase
 import com.openxcell.utills.NavigationCommand
 import com.openxcell.rx.RxBus
 import com.openxcell.rx.RxHandler
+import com.openxcell.rx.observer.SingleWithOutHandler
+import com.openxcell.ui.activity.MainActivity
 import com.openxcell.utills.SharedPrefsManager
 import com.openxcell.utills.SingleLiveEvent
+import com.openxcell.utills.makeThreadSafe
+import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import java.io.IOException
@@ -77,5 +81,30 @@ open class BaseViewModel : ViewModel(), RxHandler {
         }
     }
 
+
+
+    fun getServerErrorMessage(e: Throwable): String {
+
+        if(e is ServerException&&e.type == ServerException.Companion.Type.AUTH)
+        {
+            Single.create<String> {
+                appDataBase.clearAllTables()
+            }.makeThreadSafe()
+                .subscribe(SingleWithOutHandler())
+
+            prefsManager.clearPrefs()
+            navigation.postValue(NavigationCommand.ToActivity(MainActivity::class.java))
+        }
+        when (e) {
+            is IOException -> return application.getString(R.string.no_internet)
+            is ServerException -> return e.message!!
+            else -> return application.getString(R.string.error_comman)
+        }
+    }
+
+
+    fun onClickBack() {
+        navigation.postValue(NavigationCommand.Back)
+    }
 
 }
