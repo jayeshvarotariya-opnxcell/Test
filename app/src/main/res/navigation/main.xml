@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    app:startDestination="@id/userFragment">
+    app:startDestination="@id/listFragment">
 
     <fragment
         android:id="@+id/userFragment"
-        android:name="com.openxcell.ui.user.UserFragment"
+        android:name="com.openxcell.ui.auth.fragment.UserFragment"
         android:label="UserFragment"
         tools:layout="@layout/layout_fragment">
 

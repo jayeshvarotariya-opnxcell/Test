@@ -1,16 +1,11 @@
 package com.openxcell.ui.list
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import com.google.gson.reflect.TypeToken
-import com.openxcell.R
-import com.openxcell.data.pojo.ResponseData
-import com.openxcell.data.pojo.UserModel
 import com.openxcell.databinding.ListFragmentBinding
 import com.openxcell.di.Injectable
 import com.openxcell.ui.base.BaseFragment
@@ -52,7 +47,7 @@ class ListFragment : BaseFragment(), Injectable {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mBinding.viewModel =listViewModel
-        Log.e(">>",">>>>>> user ${sharedPrefsManager.getObject(R.string.app_name,ResponseData::class.java).data}")
+        setToolBarModeFullScreen()
     }
 
 

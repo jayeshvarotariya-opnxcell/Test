@@ -11,7 +11,7 @@ import com.openxcell.utills.NavigationCommand
 import com.openxcell.rx.RxBus
 import com.openxcell.rx.RxHandler
 import com.openxcell.rx.observer.SingleWithOutHandler
-import com.openxcell.ui.activity.MainActivity
+import com.openxcell.ui.home.MainActivity
 import com.openxcell.utills.SharedPrefsManager
 import com.openxcell.utills.SingleLiveEvent
 import com.openxcell.utills.makeThreadSafe

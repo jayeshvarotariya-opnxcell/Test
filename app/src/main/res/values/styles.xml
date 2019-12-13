@@ -39,5 +39,7 @@
 
     </style>
 
+    <style name="ToolbarTheme"></style>
+
     <color name="white">#ffffff</color>
 </resources>

@@ -5,12 +5,14 @@ import android.os.Bundle
 import android.view.Gravity
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.maan.mandir.utills.MessageCommand
 import com.openxcell.R
 import com.openxcell.databinding.TostLayoutBinding
-import com.openxcell.ui.activity.MainActivity
+import com.openxcell.ui.home.MainActivity
 import com.openxcell.utills.NavigationCommand
 
 
@@ -34,7 +36,7 @@ abstract class BaseFragment : Fragment() {
             }
         })
 
-        Intent(activity,MainActivity::class.java)
+        Intent(activity, MainActivity::class.java)
 
     }
 
@@ -105,5 +107,38 @@ abstract class BaseFragment : Fragment() {
 
 
     val navigator by lazy { findNavController() }
+
+
+    /**
+     * manageCut = Do you want to manage cut out status bar size by your fragment layout or use default
+     * return size of display status bar with cut out
+     */
+    fun setToolBarModeFullScreen(manageCut: Boolean = false, bottomMenu: Boolean = true): Int {
+
+        return if (activity is ToolBarActivity)
+            (activity as ToolBarActivity).setToolBarModeFullScreen(manageCut)
+        else
+            0
+
+    }
+
+
+    fun setToolBarModeBack(
+        tital: String,
+        icon: Int = R.drawable.ic_back_arrow,
+        bottomMenu: Boolean = true
+    ) {
+        if (activity is ToolBarActivity)
+            (activity as ToolBarActivity).setToolBarModeBack(tital, icon)
+
+    }
+
+    fun getNotchSize(): LiveData<Int> {
+        if (activity is ToolBarActivity)
+            return (activity as ToolBarActivity).getNotchSize()
+        else
+            return MutableLiveData(0)
+    }
+
 
 }

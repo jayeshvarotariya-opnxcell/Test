@@ -3,7 +3,7 @@ package com.openxcell.di.builder
 import com.openxcell.ui.list.ListFragment
 import com.openxcell.ui.list.PageFragment
 import com.openxcell.ui.list.SwipeFragment
-import com.openxcell.ui.user.UserFragment
+import com.openxcell.ui.auth.fragment.UserFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

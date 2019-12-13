@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.openxcell.ui.list.ListViewModel
 import com.openxcell.ui.list.PageViewModel
 import com.openxcell.viewmodel.ViewModelFactory
-import com.openxcell.ui.user.UserViewModel
+import com.openxcell.ui.auth.viewmodel.UserViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

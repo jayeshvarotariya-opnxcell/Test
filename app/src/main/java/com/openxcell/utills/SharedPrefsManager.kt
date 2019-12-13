@@ -95,4 +95,14 @@ class SharedPrefsManager @Inject constructor(
         )
     }
 
+    companion object {
+
+
+        //All pref names
+        const val LANGUAGE = "language"
+        const val AUTH_TOKEN  = "pref_auth_token"
+        const val USER  = "auth_user"
+
+    }
+
 }

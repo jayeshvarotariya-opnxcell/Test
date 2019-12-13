@@ -1,4 +1,4 @@
-package com.openxcell.ui.user
+package com.openxcell.ui.auth.viewmodel
 
 import android.text.TextUtils
 import android.util.Patterns
@@ -6,13 +6,10 @@ import android.view.View
 import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import com.openxcell.R
-import com.openxcell.data.pojo.ResponseData
 import com.openxcell.data.pojo.UserModel
 import com.openxcell.data.repository.AuthRepository
-import com.openxcell.rx.MY_DATA
-import com.openxcell.rx.observer.SingleWithHandler
 import com.openxcell.ui.base.BaseViewModel
-import com.openxcell.utills.Logger
+import com.openxcell.ui.home.MainActivity
 import com.openxcell.utills.NavigationCommand
 import java.util.regex.Pattern
 import javax.inject.Inject
@@ -27,19 +24,19 @@ class UserViewModel @Inject constructor(private val authRepository: AuthReposito
     val passwordError = ObservableField<String>("")
 
 
-
-    fun submit(view:View) {
-        rxBus.post( ""+123,MY_DATA)
+    fun submit(view: View) {
+        navigation.postValue(NavigationCommand.ToActivity(MainActivity::class.java))
+       /*
         if (validated())
             authRepository.userLogin(email.get()!!, password.get()!!)
                 .subscribe(object :
                     SingleWithHandler<ResponseData<UserModel>>(this) {
                     override fun onSuccess(t: ResponseData<UserModel>) {
-                        Logger.log(">>>>"+t.data)
-                        navigation.postValue(NavigationCommand.To(UserFragmentDirections.actionUserFragmentToListFragment()))
+                        Logger.log(">>>>" + t.data)
+                        navigation.postValue(NavigationCommand.ToActivity(MainActivity::class.java))
                     }
                 }
-                )
+                )*/
     }
 
     private fun validated(): Boolean {
@@ -51,7 +48,7 @@ class UserViewModel @Inject constructor(private val authRepository: AuthReposito
             emailError.notifyChange()
             return false
         }
-        if(!Pattern.matches(Patterns.EMAIL_ADDRESS.pattern(),email.get())){
+        if (!Pattern.matches(Patterns.EMAIL_ADDRESS.pattern(), email.get())) {
             emailError.set(application.getString(R.string.valid_email))
             emailError.notifyChange()
             return false

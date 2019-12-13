@@ -1,4 +1,4 @@
-package com.openxcell.ui.user
+package com.openxcell.ui.auth.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,12 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.openxcell.R
-import com.openxcell.data.pojo.DataEntity
 import com.openxcell.databinding.LayoutFragmentBinding
 import com.openxcell.di.Injectable
 import com.openxcell.ui.base.BaseFragment
 import com.openxcell.ui.base.BaseViewModel
+import com.openxcell.ui.auth.viewmodel.UserViewModel
 import com.openxcell.utills.Logger
 import com.openxcell.utills.SharedPrefsManager
 import javax.inject.Inject

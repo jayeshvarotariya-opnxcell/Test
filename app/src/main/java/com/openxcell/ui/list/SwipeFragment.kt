@@ -44,6 +44,7 @@ class SwipeFragment : BaseFragment(), Injectable {
         super.onViewCreated(view, savedInstanceState)
         mBinding.viewModel =listViewModel
         listViewModel.retrieveDataList()
+        setToolBarModeBack("List Demo")
     }
 
 
